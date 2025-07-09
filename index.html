@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Interactive Todo List - Enhanced</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <div class="app">
+    <div class="header">
+      <h1><i class="fas fa-tasks"></i> Smart Todo</h1>
+      <p>Kelola tugas dengan lebih efisien</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number" id="totalTasks">0</span>
+        <span class="stat-label">Total Tugas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="completedTasks">0</span>
+        <span class="stat-label">Selesai</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="pendingTasks">0</span>
+        <span class="stat-label">Pending</span>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <form class="todo-form" id="todoForm">
+        <div class="input-group">
+          <input 
+            type="text" 
+            class="todo-input" 
+            id="todoInput" 
+            placeholder="Tambahkan tugas baru..." 
+            required
+          >
+        </div>
+        <button type="submit" class="add-btn">
+          <i class="fas fa-plus"></i>
+          <span>Tambah</span>
+        </button>
+      </form>
+
+      <div class="priority-selector">
+        <button type="button" class="priority-btn high" data-priority="high">
+          <i class="fas fa-exclamation"></i> Tinggi
+        </button>
+        <button type="button" class="priority-btn medium active" data-priority="medium">
+          <i class="fas fa-minus"></i> Sedang
+        </button>
+        <button type="button" class="priority-btn low" data-priority="low">
+          <i class="fas fa-arrow-down"></i> Rendah
+        </button>
+      </div>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">
+        <i class="fas fa-list"></i> Semua
+      </button>
+      <button class="filter-btn" data-filter="pending">
+        <i class="fas fa-clock"></i> Pending
+      </button>
+      <button class="filter-btn" data-filter="completed">
+        <i class="fas fa-check"></i> Selesai
+      </button>
+    </div>
+
+    <ul class="todo-list" id="todoList">
+    </ul>
+
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <i class="fas fa-clipboard-list"></i>
+      <h3>Belum ada tugas</h3>
+      <p>Tambahkan tugas pertama Anda untuk memulai!</p>
+    </div>
+
+    <div class="clear-completed" id="clearCompleted" style="display: none;">
+      <button class="clear-btn" onclick="clearCompletedTasks()">
+        <i class="fas fa-trash"></i> Hapus Tugas Selesai
+      </button>
+    </div>
+  </div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h3><i class="fas fa-edit"></i> Edit Tugas</h3>
+      <input type="text" id="editInput" placeholder="Edit tugas...">
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeEditModal()">Batal</button>
+        <button class="modal-btn save" onclick="saveEdit()">Simpan</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
